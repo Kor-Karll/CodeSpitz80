@@ -4,3 +4,8 @@
 
 권한 = 속성
 
+const Item = class{}
+
+const Item = class Item{}
+
+과 동일하다 (ES6 파싱규칙)
