@@ -15,14 +15,14 @@ const err =msg=>{
 }
 
 const Item = class{
-constructor(_game, _type, _x, _y){
-  if(!_game) return err(`invalid game:${game}`);
-  prop(this,{
-    _game, _type, _x, _y,
-    _isSelected:false,_previousSelected:null,
-    _isActionActivated:false
-  });
-}
+  constructor(_game, _type, _x, _y){
+    if(!_game) return err(`invalid game:${game}`);
+    prop(this,{
+      _game, _type, _x, _y,
+      _isSelected:false,_previousSelected:null,
+      _isActionActivated:false
+    });
+  }
 
   // 일반가능
   get type(){}
