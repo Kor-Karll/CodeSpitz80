@@ -63,3 +63,38 @@ const Item = class{
   action(){return false;}
   queAtion(){}
 };
+
+const Game = class{
+  _column = 0;
+  _row = 0;
+  _types = initVal([Type]);
+  _renderer = initVal(Renderer);
+
+  _items = new Set;
+  _msg2item = new WeakMap;
+  _item2msg = new WeakMap;
+
+  _actionQue = [];
+  _removeCnt = 0;
+  _createdcnt = 0;
+
+  _previousItem = initVal(Item);
+
+  constructor({column:_column, row:_row, types:_types, renderer:_renderer}){
+    prop(this, {_column, _row, _types, _renderer});
+    this._init();
+  }
+
+  async _init(){
+    const {_renderer, _items, _row, _column, _item2msg} = this;
+    _renderer.deactivate();
+    await _renderer.setGame(this, _row, _column);
+    const coll = [];
+    for(let c = 0; c < _column; c++){
+      for(let r = 0; r < _row; r++) coll.push(this._add(c, r - _row));
+    }
+    await Promise.all(coll)
+  }
+
+
+}
